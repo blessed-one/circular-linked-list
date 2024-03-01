@@ -1,19 +1,50 @@
-﻿public class Program
+﻿using System.Security.Cryptography.X509Certificates;
+
+public class Program
 {
     public static void Main(string[] args)
     {
-        var fio = new MyCircularLinkedList<string>("Danis");
-
-        fio.AddLast("Ilgamovich");
-        foreach (var x in fio)
+        //Console.WriteLine("Hello, World!");
+        //Console.WriteLine($"Последний участник - {LastParticipant(1000, 17, 30)}");
+        
+    }
+    public static int LastParticipant(int N, int k, int l)
+    {
+        var lis = new MyCircularLinkedList<int>();
+        for (int i = 1; i <= N; i++)
         {
-            Console.WriteLine(x);
+            lis.Add(i);
         }
 
-        fio.AddFirst("Shakirov");
-        foreach (var x in fio)
+        var currentNumber = 1;
+        var droppedOut = 0;
+        foreach (int tag in lis)
         {
-            Console.WriteLine(x);
+            if (currentNumber % k == 0)
+            {
+                droppedOut++;
+                lis.Remove(tag);
+            }
+            if (droppedOut == l)
+            {
+                N++;
+                droppedOut = 0;
+                lis.Add(N);
+            }
+
+            if (lis.Count == 1)
+            {
+                break;
+            }
+
+            currentNumber++;
         }
+
+        foreach (int i in lis)
+        {
+            return i;
+        }
+
+        return -1;
     }
 }

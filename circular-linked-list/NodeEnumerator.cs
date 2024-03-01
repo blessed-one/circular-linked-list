@@ -3,13 +3,11 @@
 public class NodeEnumerator<T> : IEnumerator<T>
 {
     private Node<T> _head;
-    private Node<T> _tail;
     private Node<T> _current;
 
     public NodeEnumerator(Node<T>? head, Node<T>? tail)
     {
         _head = head;
-        _tail = tail;
     }
 
     public T Current
@@ -40,7 +38,8 @@ public class NodeEnumerator<T> : IEnumerator<T>
             _current = _head;
             return true;
         }
-        else if(_current != _tail)
+        /*
+        else if(_current.Next != _head)
         {
             _current = _current.Next!;
             return true;
@@ -49,6 +48,12 @@ public class NodeEnumerator<T> : IEnumerator<T>
         {
             _current = null;
             return false;
+        }
+        */
+        else
+        {
+            _current = _current.Next;
+            return true;
         }
     }
 

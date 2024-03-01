@@ -13,6 +13,11 @@ public class MyCircularLinkedList<T> : IEnumerable<T>
         }
     }
 
+    public MyCircularLinkedList()
+    {
+        _head = _tail = null;
+        Count = 0;
+    }
     public MyCircularLinkedList(T head)
     {
         var node = new Node<T>(head);
@@ -22,49 +27,33 @@ public class MyCircularLinkedList<T> : IEnumerable<T>
 
         Count = 1;
     }
-
-    public void AddFirst(T data)
+    public MyCircularLinkedList(T[] items)
+    {
+        foreach ( var item in items )
+        {
+            Add( item );
+        }
+        Count = items.Length;
+    }
+    
+    public void Add(T data)
     {
         var node = new Node<T>(data);
-        if (_head == null)
+        if (Count == 0)
         {
             _head = node;
             _tail = node;
             node.Next = node;
-
-            Count = 1;
         }
         else
         {
-            node.Next = _head;
-            _tail!.Next = node;
-            _head = node;
-
-            Count++;
-        }
-    }
-
-    public void AddLast(T data)
-    {
-        var node = new Node<T>(data);
-        if (_head == null)
-        {
-            _head = node;
-            _tail = node;
-            node.Next = node;
-
-            Count = 1;
-        }
-        else
-        {
-            node.Next = _head;
+            node.Next = _head!;
             _tail!.Next = node;
             _tail = node;
-
-            Count++;
         }
+        Count++;
     }
-
+    
     public bool Remove(T data)
     {
         Node<T>? current = _head;
@@ -113,13 +102,13 @@ public class MyCircularLinkedList<T> : IEnumerable<T>
 
         return false;
     }
-
+    
     public void Clear()
     {
         _head = _tail = null;
         Count = 0;
     }
-
+    
     public bool Contains(T data)
     {
         Node<T>? current = _head;
@@ -141,7 +130,7 @@ public class MyCircularLinkedList<T> : IEnumerable<T>
         
         return false;
     }
-
+    
     public Node<T> Find(T data)
     {
         Node<T>? current = _head;
@@ -163,12 +152,12 @@ public class MyCircularLinkedList<T> : IEnumerable<T>
 
         return null;
     }
-
+    
     public IEnumerator<T> GetEnumerator()
     {
         return new NodeEnumerator<T>(_head, _tail);
     }
-
+    
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
