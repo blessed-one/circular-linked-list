@@ -1,12 +1,12 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 
 public class Program
 {
     public static void Main(string[] args)
     {
-        //Console.WriteLine("Hello, World!");
-        //Console.WriteLine($"Последний участник - {LastParticipant(1000, 17, 30)}");
-        
+        Console.WriteLine("Hello, World!");
     }
     public static int LastParticipant(int N, int k, int l)
     {

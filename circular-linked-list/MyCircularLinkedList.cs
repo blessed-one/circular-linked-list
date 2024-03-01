@@ -51,6 +51,7 @@ public class MyCircularLinkedList<T> : IEnumerable<T>
             _tail!.Next = node;
             _tail = node;
         }
+
         Count++;
     }
     
@@ -130,29 +131,7 @@ public class MyCircularLinkedList<T> : IEnumerable<T>
         
         return false;
     }
-    
-    public Node<T> Find(T data)
-    {
-        Node<T>? current = _head;
-
-        if (IsEmpty)
-        {
-            return null;
-        }
-
-        do
-        {
-            if (current!.Next!.Data!.Equals(data))
-            {
-                return current;
-            }
-            current = current.Next!;
-        }
-        while (current != _head);
-
-        return null;
-    }
-    
+      
     public IEnumerator<T> GetEnumerator()
     {
         return new NodeEnumerator<T>(_head, _tail);
