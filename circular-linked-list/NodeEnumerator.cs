@@ -38,18 +38,6 @@ public class NodeEnumerator<T> : IEnumerator<T>
             _current = _head;
             return true;
         }
-        /*
-        else if(_current.Next != _head)
-        {
-            _current = _current.Next!;
-            return true;
-        }
-        else
-        {
-            _current = null;
-            return false;
-        }
-        */
         else
         {
             _current = _current.Next;

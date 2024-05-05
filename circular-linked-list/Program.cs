@@ -6,45 +6,20 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
-    }
-    public static int LastParticipant(int N, int k, int l)
-    {
-        var lis = new MyCircularLinkedList<int>();
-        for (int i = 1; i <= N; i++)
+        var cirlce = new MyCircularLinkedList<int>();
+        cirlce.Add(1);
+        cirlce.Add(2);
+        cirlce.Add(3);
+        cirlce.Add(4);
+        cirlce.Add(5);
+
+        int count = 0;
+        foreach (var item in cirlce)
         {
-            lis.Add(i);
+            Console.WriteLine(item);
+            count++;
+
+            if (count == 15) break;
         }
-
-        var currentNumber = 1;
-        var droppedOut = 0;
-        foreach (int tag in lis)
-        {
-            if (currentNumber % k == 0)
-            {
-                droppedOut++;
-                lis.Remove(tag);
-            }
-            if (droppedOut == l)
-            {
-                N++;
-                droppedOut = 0;
-                lis.Add(N);
-            }
-
-            if (lis.Count == 1)
-            {
-                break;
-            }
-
-            currentNumber++;
-        }
-
-        foreach (int i in lis)
-        {
-            return i;
-        }
-
-        return -1;
     }
 }
